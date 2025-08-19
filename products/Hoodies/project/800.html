@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Custom Cart</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="img/favicon.ico" rel="icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="../../../css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row bg-secondary py-2 px-xl-5">
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-dark" href="">FAQs</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" href="">Help</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" href="">Support</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-dark px-2" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="text-dark px-2" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="text-dark px-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <a class="text-dark px-2" href=""><i class="fab fa-instagram"></i></a>
+                    <a class="text-dark pl-2" href=""><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center py-3 px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a href="" class="text-decoration-none">
+                    <h1 class="m-0 display-5 font-weight-semi-bold">
+                        <span class="text-primary font-weight-bold border px-3 mr-1">Custom</span>Cart
+                    </h1>
+                </a>
+            </div>
+            <div class="col-lg-6 col-6 text-left">
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3 col-6 text-right">
+                <a href="" class="btn border">
+                    <i class="fas fa-user text-primary"></i>
+                    <span class="badge" id="username-display"></span>
+                </a>
+                <a class="btn border" onclick="openCartModal()">
+                    <i class="fas fa-shopping-cart text-primary"></i>
+                    <span class="badge" id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid py-5">
+        <div class="row px-xl-5">
+            <div class="col-lg-5 pb-5">
+                <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner border">
+                        <div class="carousel-item active">
+                            <img class="w-100 h-100" src="hoodie8.jpg" alt="Hoodie">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
+                        <i class="fa fa-2x fa-angle-left text-dark"></i>
+                    </a>
+                    <a class="carousel-control-next" href="#product-carousel" data-slide="next">
+                        <i class="fa fa-2x fa-angle-right text-dark"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-7 pb-5">
+                <h3 class="font-weight-semi-bold">Hooded Sweatshirt with Drawstring</h3>
+                <div class="d-flex mb-3">
+                    <div class="text-primary mr-2">
+                        <small class="fas fa-star"></small>
+                        <small class="fas fa-star"></small>
+                        <small class="fas fa-star"></small>
+                        <small class="fas fa-star-half-alt"></small>
+                        <small class="far fa-star"></small>
+                    </div>
+                    <small class="pt-1">(127 Reviews)</small>
+                </div>
+                <h3 class="font-weight-semi-bold mb-4">Rs.600</h3>
+                <p class="mb-4">
+                    Heavyweight 400GSM cotton blend. Double-lined hood with metal grommets. 
+                    Kangaroo pocket, ribbed cuffs and hem. Machine wash cold.
+                </p>
+
+                <div class="d-flex mb-3">
+                    <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
+                    <select class="size-select" id="size-select">
+                        <option value="">Select Size</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                </div>
+
+                <div class="d-flex align-items-center mb-4 pt-2">
+                    <div class="input-group quantity mr-3" style="width: 130px;">
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary btn-minus"><i class="fa fa-minus"></i></button>
+                        </div>
+                        <input type="text" class="form-control bg-secondary text-center" value="1" id="quantity">
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary btn-plus"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary px-3" onclick="addToCartWithSizeAndColor(800)">
+                        <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="nav nav-tabs justify-content-center border-secondary mb-4">
+                    <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
+                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Care</a>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-pane-1">
+                        <h4 class="mb-3">Product Details</h4>
+                        <p>80% cotton/20% polyester. Reinforced stitching. Unisex fit. 
+                        Available in 6 colors. Imported fabric.</p>
+                    </div>
+                    <div class="tab-pane fade" id="tab-pane-2">
+                        <h4 class="mb-3">Care Instructions</h4>
+                        <p>Machine wash cold. Tumble dry low. Do not bleach. 
+                        Iron low heat. Do not dry clean.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const quantityInput = document.getElementById("quantity");
+        const plusButton = document.querySelector(".btn-plus");
+        const minusButton = document.querySelector(".btn-minus");
+    
+        function updateCart(quantityChange) {
+            const productId = 1; // Assuming pen product ID is 1
+            const customText = document.getElementById("custom-text").value;
+    
+            let newQuantity = parseInt(quantityInput.value, 10) + quantityChange;
+            if (newQuantity < 1) return;
+    
+            quantityInput.value = newQuantity;
+    
+            fetch("/api/cartp/update", {  // Use an "update" endpoint instead of "add"
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    productid: productId,
+                    pname: "Engraved Pen",
+                    price: 9.99,
+                    quantity: newQuantity, // Update the quantity instead of adding new items
+                    customText: customText
+                }),
+            })
+            .then(response => response.json())
+            .then(() => updateCartCount()) // Update cart count after modifying quantity
+            .catch(console.error);
+        }
+    
+        // Increase quantity and update cart
+        plusButton.addEventListener("click", function () {
+            updateCart(1);
+        });
+    
+        // Decrease quantity and update cart (only if quantity > 1)
+        minusButton.addEventListener("click", function () {
+            updateCart(-1);
+        });
+    });
+</script>
+</body>
+</html>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const minusBtn = document.querySelector('.btn-minus');
+  const plusBtn = document.querySelector('.btn-plus');
+  const quantityInput = document.getElementById('quantity');
+
+  minusBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    let currentValue = parseInt(quantityInput.value) || 1;
+    if (currentValue > 1) {
+      quantityInput.value = currentValue - 1;
+    }
+  });
+
+  plusBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    let currentValue = parseInt(quantityInput.value) || 1;
+    quantityInput.value = currentValue + 1;
+  });
+});
+</script>

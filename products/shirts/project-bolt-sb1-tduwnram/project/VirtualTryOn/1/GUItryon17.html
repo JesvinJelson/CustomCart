@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload & Display Processed Image</title>
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        #image-container img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+        .reference-image {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .drag-drop-area {
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            margin: 20px 0;
+            background-color: #f9f9f9;
+        }
+        .drag-drop-area.dragover {
+            border-color: #000;
+            background-color: #e0e0e0;
+        }
+        .drag-drop-area p {
+            margin: 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .drag-drop-area input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: rgb(3, 87, 54);color: black; padding: 20px;">Virtual try on</h1>
+
+    <!-- Display the reference product image -->
+    <div id="reference-container" style="padding: 30px; align-items: center;">
+        <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Upload your photo down below</h2>
+        <img id="reference-image" class="reference-image" alt="Product Image">
+    </div>
+
+    <!-- Drag and drop file upload area -->
+    <div class="drag-drop-area" id="drag-drop-area">
+        <p>Drag & drop your image here or <span style="color: #007bff; text-decoration: underline;">click to upload</span></p>
+        <input type="file" id="image-input" accept="image/*" />
+    </div>
+
+    <!-- Container for displaying the output image -->
+    <div id="image-container"></div>
+
+    <script>
+        // Get the productId from the URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('productId');
+
+        // Drag and drop functionality
+        const dragDropArea = document.getElementById('drag-drop-area');
+        const fileInput = document.getElementById('image-input');
+
+        dragDropArea.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                handleFile(file);
+            }
+        });
+
+        dragDropArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dragDropArea.classList.add('dragover');
+        });
+
+        dragDropArea.addEventListener('dragleave', () => {
+            dragDropArea.classList.remove('dragover');
+        });
+
+        dragDropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dragDropArea.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                handleFile(file);
+            }
+        });
+
+        function handleFile(file) {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("productId", productId);
+
+    document.getElementById('image-container').innerHTML = '<p>Processing image... ⏳</p>';
+
+    // Send directly to FastAPI server
+    fetch("http://localhost:8001/upload/", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.image_url) {
+            // Directly show the generated image
+            const img = document.createElement('img');
+            img.src = data.image_url + "?t=" + Date.now();
+            img.alt = "Processed Image";
+            document.getElementById('image-container').innerHTML = '';
+            document.getElementById('image-container').appendChild(img);
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        document.getElementById('image-container').innerHTML = '<p>🚨 Processing failed</p>';
+    });
+}
+
+        function checkImageAvailability(imageUrl) {
+            console.log(`🔍 Checking for image at: ${imageUrl}`);
+
+            fetch(imageUrl, { method: "HEAD" }) // Use HEAD to check without downloading
+            .then(response => {
+                if (response.ok) {
+                    console.log("✅ Image found! Displaying now...");
+                    
+                    const img = document.createElement('img');
+                    img.src = imageUrl + "?t=" + new Date().getTime(); // Prevent caching
+                    img.alt = "Processed Image";
+                    document.getElementById('image-container').innerHTML = `<p>✅ Image Ready!</p>`;
+                    document.getElementById('image-container').appendChild(img);
+                } else {
+                    console.log("🔄 Image not ready, checking again in 1 second...");
+                    setTimeout(() => checkImageAvailability(imageUrl), 1000); // Retry after 1 second
+                }
+            })
+            .catch(error => {
+                console.error("🚨 Error checking image:", error);
+                setTimeout(() => checkImageAvailability(imageUrl), 1000); // Retry even on error
+            });
+        }
+
+        // Set the reference image from the URL parameter
+        const imageUrl = urlParams.get('image');
+        if (imageUrl) {
+            document.getElementById('reference-image').src = imageUrl;
+        }
+    </script>
+</body>
+</html>
+

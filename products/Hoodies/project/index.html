@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>T-Shirt</title>
+    <link rel="stylesheet" href="style.css">
+        <!-- Favicon -->
+        <link href="../../../../img/favicon.ico" rel="icon">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+    
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    
+        <!-- Libraries Stylesheet -->
+        <link href="../../../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+  <link href=".../../../../../css/style.css" rel="stylesheet">
+        <!-- Topbar Start -->
+        <div class="container-fluid">
+          <div class="row bg-secondary py-2 px-xl-5">
+              <div class="col-lg-6 d-none d-lg-block">
+                  <div class="d-inline-flex align-items-center">
+                      <a class="text-dark" href="">FAQs</a>
+                      <span class="text-muted px-2">|</span>
+                      <a class="text-dark" href="">Help</a>
+                      <span class="text-muted px-2">|</span>
+                      <a class="text-dark" href="">Support</a>
+                  </div>
+              </div>
+              <div class="col-lg-6 text-center text-lg-right">
+                  <div class="d-inline-flex align-items-center">
+                      <a class="text-dark px-2" href="">
+                          <i class="fab fa-facebook-f"></i>
+                      </a>
+                      <a class="text-dark px-2" href="">
+                          <i class="fab fa-twitter"></i>
+                      </a>
+                      <a class="text-dark px-2" href="">
+                          <i class="fab fa-linkedin-in"></i>
+                      </a>
+                      <a class="text-dark px-2" href="">
+                          <i class="fab fa-instagram"></i>
+                      </a>
+                      <a class="text-dark pl-2" href="">
+                          <i class="fab fa-youtube"></i>
+                      </a>
+                  </div>
+              </div>
+          </div>
+          <div class="row align-items-center py-3 px-xl-5">
+              <div class="col-lg-3 d-none d-lg-block">
+                  <a href="" class="text-decoration-none">
+                      <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Custom</span>Cart</h1>
+                  </a>
+              </div>
+              <div class="col-lg-6 col-6 text-left">
+                  <form action="">
+                      <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Search for products">
+                          <div class="input-group-append">
+                              <span class="input-group-text bg-transparent text-primary">
+                                  <i class="fa fa-search"></i>
+                              </span>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+              <div class="col-lg-3 col-6 text-right">
+                <a href="" class="btn border">
+                    <i class="fas fa-user text-primary"></i>
+                    <span style="color: rgb(63, 62, 62);"   class="badge" id="username-display"></span>  <!--Users name displayed-->
+                </a>
+        
+                <a class="btn border">
+                    <div onclick="openModal()">
+                    <i class="fas fa-shopping-cart text-primary"></i>
+                    <span style="color: rgb(63, 62, 62);"   class="badge" id="cart-count">0</span>
+                    </div>
+                </a>
+        
+            </div>
+          </div>
+      </div>
+      <script>
+        fetch("/api/username")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("username-display").textContent = data.username;
+            })
+            .catch(error => console.error("Error fetching username:", error));
+    </script>
+      <!-- Topbar End -->
+      <div>
+        <header>
+            <a class="text-decoration-none">
+              <h1 class="m-0 display-5 font-weight-semi-bold">Hoodies</h1>
+          </a>
+    
+        </header>
+     </div>
+
+    <!-- Navbar Start -->
+
+
+  <div class="row border-top px-xl-5 d-flex">
+    <style>
+        /* Fix category sidebar */
+        #navbar-vertical {
+            display: block !important;
+            position: sticky;
+            top: 20px;
+            height: auto; /* Adjust height */
+            max-height: 80vh; /* Prevent it from pushing down content */
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-right: 1px solid #ddd;
+        }
+    
+        /* Ensure product section takes full space */
+        .col-lg-9 {
+            flex-grow: 1;
+        }
+    </style>
+     <div class="col-lg-3 d-none d-lg-block">
+        <div class="bg-light border p-3 position-relative">
+            <a class="btn d-flex align-items-center justify-content-between bg-light w-100 text-decoration-none"
+               data-bs-toggle="collapse" href="#category-menu" role="button" style="color: #006400;">
+                <h6 class="m-0" style="color: #006400;">Categories</h6>
+                <i class="fa fa-angle-down" style="color: #006400;"></i>
+            </a>
+            <div class="collapse position-absolute bg-white border shadow mt-2 p-3" id="category-menu"
+                 style="width: 100%; z-index: 10;">
+                <div class="navbar-nav w-100">
+                    <a href="../../shirts/project-bolt-sb1-tduwnram/project/index.html" class="nav-item nav-link" style="color: #006400;">T-shirts</a>
+                    <a href="../../sweatshirt/project/index.html" class="nav-item nav-link" style="color: #006400;">Sweatshirts</a>
+                    <a href="../../Hoodies/project/index.html" class="nav-item nav-link" style="color: #006400;">Hoodies</a>
+                    <a href="../../../Product page/index.html" class="nav-item nav-link" style="color: #006400;">Gifts</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+      <div class="col-lg-9">
+          <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+              <a href="" class="text-decoration-none d-block d-lg-none">
+                  <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Custom</span>Cart</h1>
+              </a>
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                  <div class="navbar-nav mr-auto py-0">
+                      <a href="../../../../index.html" class="nav-item nav-link">Home</a>
+                      <a href="../../../../shop.html" class="nav-item nav-link">Shop</a>
+                      <a href="../../../../detail.html" class="nav-item nav-link">Shop Detail</a>
+                      <div class="nav-item dropdown">
+                          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                          <div class="dropdown-menu rounded-0 m-0">
+                              <a href="../../../../cart.html" class="dropdown-item">Shopping Cart</a>
+                              <a href="../../../../checkout.html" class="dropdown-item">Checkout</a>
+                          </div>
+                      </div>
+                      <a href="../../../../contact.html" class="nav-item nav-link active">Contact</a>
+                  </div>
+                  <div class="navbar-nav ml-auto py-0">
+                    <a href="../../../../account.html" class="nav-item nav-link" id="login-link">Login</a>
+                    <a href="../../../../account.html" class="nav-item nav-link" id="register-link">Register</a>
+                    <a href="#" class="nav-item nav-link" id="logout-link" style="display: none;">Logout</a>
+                </div>
+              </div>
+          </nav>
+      </div>
+  </div>
+</div>
+<!-- Navbar End -->
+
+    <main>
+      <div class="filters">
+        <div class="filter-group">
+          <label for="sort">Sort by:</label>
+          <select id="sort" onchange="handleSort()">
+            <option value="default">Default</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="price-range">Price Range:</label>
+          <select id="price-range" onchange="handlePriceFilter()">
+            <option value="all">All Prices</option>
+            <option value="below 1000">Below 1000</option>
+            <option value="500-1000">500-1000</option>
+            <option value="1000+">Over 1000</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="products" id="products"></div>
+    </main>
+
+    <div id="cart-modal" class="modal">
+      <div class="modal-content">
+        <h2>Shopping Cart</h2>
+        <div id="cart-items"></div>
+        <div class="cart-total">
+          <p>Total: <span id="cart-total">0</span></p>
+        </div>
+        <button onclick="closeModal()">Close</button>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var collapseList = [].slice.call(document.querySelectorAll('.collapse'))
+              .map(function(collapseEl) {
+                  return new bootstrap.Collapse(collapseEl, { toggle: false });
+              });
+          
+          fetch("/api/username")
+              .then(response => response.json())
+              .then(data => {
+                  document.getElementById("username-display").textContent = data.username;
+              })
+              .catch(error => console.error("Error fetching username:", error));
+          
+          updateLoginStatus();
+      });
+
+      function updateLoginStatus() {
+          fetch("/api/username")
+              .then(response => {
+                  if (response.ok) {
+                      return response.json();
+                  } else {
+                      throw new Error("Not logged in");
+                  }
+              })
+              .then(data => {
+                  document.getElementById("login-link").style.display = "none";
+                  document.getElementById("register-link").style.display = "none";
+                  document.getElementById("logout-link").style.display = "block";
+              })
+              .catch(() => {
+                  document.getElementById("login-link").style.display = "block";
+                  document.getElementById("register-link").style.display = "block";
+                  document.getElementById("logout-link").style.display = "none";
+              });
+      }
+
+      document.getElementById("logout-link").addEventListener("click", function(event) {
+          event.preventDefault();
+          fetch("/logout")
+              .then(response => {
+                  if (response.redirected) {
+                      window.location.href = response.url;
+                  }
+              });
+      });
+    </script>
+
+<script>
+  // Function to update the UI based on login status
+  function updateLoginStatus() {
+    fetch("/api/username")
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Not logged in");
+        }
+      })
+      .then(data => {
+        document.getElementById("username-display").textContent = data.username;
+        document.getElementById("login-link").style.display = "none";
+        document.getElementById("register-link").style.display = "none";
+        document.getElementById("logout-link").style.display = "block";
+      })
+      .catch(error => {
+        console.error("Error fetching username:", error);
+        document.getElementById("login-link").style.display = "block";
+        document.getElementById("register-link").style.display = "block";
+        document.getElementById("logout-link").style.display = "none";
+      });
+  }
+
+  // Call the function to update the login status when the page loads
+  updateLoginStatus();
+
+  // Handle logout button click
+  document.getElementById("logout-link").addEventListener("click", function(event) {
+    event.preventDefault();
+    fetch("/logout", { method: "GET" })
+      .then(response => {
+        if (response.redirected) {
+          window.location.href = response.url;
+        }
+      })
+      .catch(error => console.error("Error logging out:", error));
+  });
+</script>
+
+
+
+<script>
+  function updateCartCount() {
+  Promise.all([fetch("/api/cart"), fetch("/api/cartp")])
+      .then(async ([regularRes, personalizedRes]) => {
+          const regularItems = await regularRes.json();
+          const personalizedItems = await personalizedRes.json();
+          const totalItems = [...regularItems, ...personalizedItems]
+              .reduce((sum, item) => sum + item.quantity, 0);
+          document.getElementById("cart-count").textContent = totalItems;
+      })
+      .catch(() => document.getElementById("cart-count").textContent = "0");
+}
+
+  document.addEventListener("DOMContentLoaded", updateCartCount);
+</script>
+  </body>
+</html>
