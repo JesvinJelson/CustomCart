@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Custom Cart</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-secondary py-2 px-xl-5">
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-dark" href="">FAQs</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" href="">Help</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" href="">Support</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-dark pl-2" href="">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center py-3 px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a href="" class="text-decoration-none">
+                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Custom</span>Cart</h1>
+                </a>
+            </div>
+            <div class="col-lg-6 col-6 text-left">
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for products">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3 col-6 text-right">
+                <a href="" class="btn border">
+                    <i class="fas fa-user text-primary"></i>
+                    <span class="badge" id="username-display"></span>  <!--Users name displayed-->
+                </a>
+                <a href="../cart.html" class="btn border">
+                    <i class="fas fa-shopping-cart text-primary"></i>
+                    <span class="badge" id="cart-count">0</span>
+                  </a>
+                  
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+    <!-- Navbar Start -->
+    <div class="row border-top px-xl-5 d-flex">
+        <div class="col-lg-3 d-none d-lg-block">
+          <div class="bg-light border p-3 position-relative">
+            <a class="btn d-flex align-items-center justify-content-between bg-primary text-white w-100" 
+               data-bs-toggle="collapse" href="#category-menu" role="button">
+              <h6 class="m-0">Categories</h6>
+              <i class="fa fa-angle-down text-dark"></i>
+            </a>
+            <div class="collapse position-absolute bg-white border shadow mt-2 p-3" id="category-menu" 
+                 style="width: 100%; z-index: 10;">
+              <div class="navbar-nav w-100">
+                <a href="../products/shirts/project-bolt-sb1-tduwnram/project/index.html" class="nav-item nav-link">T-shirts</a>
+                <a href="../products/sweatshirt/project/index.html" class="nav-item nav-link">Sweatshirts</a>
+                <a href="../products/Hoodies/project/index.html" class="nav-item nav-link">Hoodies</a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-lg-9">
+          <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+            <a href="" class="text-decoration-none d-block d-lg-none">
+              <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Custom</span>Cart</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+              <div class="navbar-nav mr-auto py-0">
+<a href="../products/shirts/project-bolt-sb1-tduwnram/project/index.html" class="nav-item nav-link">Shirts</a>
+<a href="../products/Hoodies/project/index.html" class="nav-item nav-link">Hoodies</a>
+<a href="../products/sweatshirt/project/index.html" class="nav-item nav-link">Sweatshirt</a>
+
+<div class="navbar-nav mr-auto py-0">
+    <a href="../index.html" class="nav-item nav-link">Home</a>
+    <a href="../products/shirts/project-bolt-sb1-tduwnram/project/index.html" class="nav-item nav-link">Shop</a>
+    
+    <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+        <div class="dropdown-menu rounded-0 m-0">
+            <a href="../cart.html" class="dropdown-item">Shopping Cart</a>
+            <a href="../checkout.html" class="dropdown-item">Checkout</a>
+        </div>
+    </div>
+    <a href="../contact.html" class="nav-item nav-link">Contact</a>
+</div>
+</div>
+
+            </div>
+          </nav>
+        </div>
+      </div>
+    <!-- Navbar End -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gifts Store</title>
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #ffffff;
+            color: #1e6e46;
+        }
+
+        header {
+            background-color: #177047;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            color: #ffffff;
+        }
+
+        nav button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: 2px solid #177047;
+            background-color: #ffffff;
+            color: #1e4d2b;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav button:hover {
+            background-color: #177047;
+            color: #ffffff;
+        }
+
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 2px solid #177047;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 10px;
+            max-height: 250px;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #177047;
+        }
+
+        .product-card p {
+            font-size: 16px;
+            color: #3d6b47;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Gifts Store</h1>
+        <nav>
+            <button onclick="showCategory('birthday')">Birthday</button>
+            <button onclick="showCategory('anniversary')">Anniversary</button>
+            <button onclick="showCategory('housewarming')">Housewarming</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="products">
+            <!-- Products will be dynamically inserted here -->
+        </section>
+    </main>
+
+    <script>
+        const products = {
+            birthday: [
+                { name: "Customized Mug", price: "Rs.12.99", img: "mug1.webp" },//
+                //{ name: "Photo Frame", price: "$18.99", img: "frame3.jpg" },//
+                { name: "Engraved Pen", price: "Rs.9.99", img: "pen.webp" },//
+                { name: "Personalized Keychain", price: "Rs.6.99", img: "key.jpg" },//
+                { name: "Custom Waterbottle", price: "Rs.19.99", img: "water2.webp" },//
+                { name: "Name Necklace", price: "Rs.25.99", img: "neclace.jpg" },//
+                { name: "Custom Pillow", price: "Rs.14.99", img: "pillow.jpg" }//
+            ],
+            anniversary: [
+                { name: "Engraved Watch", price: "Rs.49.99", img: "watch.jpg" },//
+                { name: "His & Her Wallet Set", price: "Rs.30.99", img: "wallet2.webp" },//
+                { name: "Chocolate Hamper", price: "Rs.10.99", img: "choco.jpg" },
+                { name: "Customized Ring", price: "Rs.39.99", img: "rings.webp" },//
+                { name: "Heart-Shaped Lamp", price: "Rs.24.99", img: "heart.png" },//
+                { name: "Name Neon Sign", price: "Rs.29.99", img: "neo.jpg" },//
+                { name: "Personalized Travel Bag", price: "Rs.15.99", img: "bag.jpg" }//
+            ],
+            housewarming: [
+                //{ name: "Custom Wooden Nameplate", price: "Rs.35.99", img: "nameplate.jpg" },//
+                //{ name: "Engraved Cutting Board", price: "Rs.22.99", img: "cutting.jpg" },//
+                { name: "Monogrammed Towels", price: "Rs.19.99", img: "towels.webp" },//
+                { name: "Personalized Clock", price: "Rs.28.99", img: "clock1.webp" },//
+                { name: "Custom Candle Set", price: "Rs.14.99", img: "candle.jpg" },//
+                { name: "Personalized Doormat", price: "Rs.24.99", img: "door.jpg" },//
+                //{ name: "Customized Wall Art", price: "$32.99", img: "wall2.webp" }//
+            ]
+        };
+
+        function showCategory(category) {
+    const productSection = document.getElementById("products");
+    productSection.innerHTML = "";
+
+    products[category].forEach(product => {
+    let productLink = "#"; // Default link
+    
+    if (product.name === "Customized Mug") {
+        productLink = "mug1.html";
+    } else if (product.name === "Photo Frame") {
+        productLink = "frame.html";
+    } else if (product.name === "Engraved Pen") {
+        productLink = "pen.html";
+    } else if (product.name === "Personalized Keychain") {
+        productLink = "key.html";
+    } else if (product.name === "Custom Waterbottle") {
+        productLink = "water.html";
+    } else if (product.name === "Name Necklace") {
+        productLink = "neclace.html";
+    } else if (product.name === "Custom Pillow") {
+        productLink = "pillow.html";
+    } else if (product.name === "Engraved Watch") {
+        productLink = "watch.html";
+    } else if (product.name === "His & Her Wallet Set") {
+        productLink = "wallet.html";
+    } else if (product.name === "Chocolate Hamper") {
+        productLink = "chocolate.html";
+    } else if (product.name === "Customized Ring") {
+        productLink = "ring.html";
+    } else if (product.name === "Heart-Shaped Lamp") {
+        productLink = "heart shaped lamp.html";
+    } else if (product.name === "Name Neon Sign") {
+        productLink = "neon sign.html";
+    } else if (product.name === "Personalized Travel Bag") {
+        productLink = "bag.html";
+    } else if (product.name === "Custom Wooden Nameplate") {
+        productLink = "nameplate.html";
+    } else if (product.name === "Engraved Cutting Board") {
+        productLink = "engravedcutting.html";
+    } else if (product.name === "Monogrammed Towels") {
+        productLink = "towels.html";
+    } else if (product.name === "Personalized Clock") {
+        productLink = "clock1.html";
+    } else if (product.name === "Custom Candle Set") {
+        productLink = "candle.html";
+    } else if (product.name === "Personalized Doormat") {
+        productLink = "doormat.html";
+    } else if (product.name === "Customized Wall Art") {
+        productLink = "wall2.html";
+    }
+
+        const productCard = `
+            <a href="${productLink}" class="product-link">
+                <div class="product-card">
+                    <img src="${product.img}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.price}</p>
+                </div>
+            </a>
+        `;
+        productSection.innerHTML += productCard;
+    });
+}
+
+        document.addEventListener("DOMContentLoaded", () => showCategory('birthday'));
+    </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize all collapse elements
+        var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'));
+        var collapseList = collapseElementList.map(function(collapseEl) {
+            return new bootstrap.Collapse(collapseEl, {
+                toggle: false
+            });
+        });
+    });
+</script>
+
+<script>
+    function updateCartCount() {
+    Promise.all([fetch("/api/cart"), fetch("/api/cartp")])
+        .then(async ([regularRes, personalizedRes]) => {
+            const regularItems = await regularRes.json();
+            const personalizedItems = await personalizedRes.json();
+            const totalItems = [...regularItems, ...personalizedItems]
+                .reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById("cart-count").textContent = totalItems;
+        })
+        .catch(() => document.getElementById("cart-count").textContent = "0");
+}
+  
+    document.addEventListener("DOMContentLoaded", updateCartCount);
+  </script>
+
+<script>
+    fetch("/api/username")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("username-display").textContent = data.username;
+        })
+        .catch(error => console.error("Error fetching username:", error));
+</script>
+
+<script>
+    // Function to update the UI based on login status
+    function updateLoginStatus() {
+      fetch("/api/username")
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Not logged in");
+          }
+        })
+        .then(data => {
+          document.getElementById("username-display").textContent = data.username;
+          document.getElementById("login-link").style.display = "none";
+          document.getElementById("register-link").style.display = "none";
+          document.getElementById("logout-link").style.display = "block";
+        })
+        .catch(error => {
+          console.error("Error fetching username:", error);
+          document.getElementById("login-link").style.display = "block";
+          document.getElementById("register-link").style.display = "block";
+          document.getElementById("logout-link").style.display = "none";
+        });
+    }
+  
+    // Call the function to update the login status when the page loads
+    updateLoginStatus();
+  
+    // Handle logout button click
+    document.getElementById("logout-link").addEventListener("click", function(event) {
+      event.preventDefault();
+      fetch("/logout", { method: "GET" })
+        .then(response => {
+          if (response.redirected) {
+            window.location.href = response.url;
+          }
+        })
+        .catch(error => console.error("Error logging out:", error));
+    });
+  </script>
+
+<style>
+    .product-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit text color */
+}
+
+.product-link:hover {
+    text-decoration: none; /* Ensure no underline on hover */
+}
+</style>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gifts Store</title>
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #ffffff;
+            color: #177047;
+        }
+
+        header {
+            background-color: #177047;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            color: #ffffff;
+        }
+
+        nav button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: 2px solid #177047;
+            background-color: #ffffff;
+            color: #177047;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav button:hover {
+            background-color: #177047;
+            color: #ffffff;
+        }
+
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 2px solid #177047;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 10px;
+            max-height: 250px;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #1e4d2b;
+        }
+
+        .product-card p {
+            font-size: 16px;
+            color: #3d6b47;
+        }
+    </style>
+</head>

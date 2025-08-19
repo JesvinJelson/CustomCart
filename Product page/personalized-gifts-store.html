@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gifts Store</title>
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #1a2421;
+            color: #e0e6e0;
+        }
+
+        header {
+            background-color: #1e4d2b;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        nav button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            background-color: #2d6a4f;
+            color: #e0e6e0;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav button:hover {
+            background-color: #40916c;
+        }
+
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: #2d6a4f;
+            border-radius: 15px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 10px;
+            max-height: 250px;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #e0e6e0;
+        }
+
+        .product-card p {
+            font-size: 16px;
+            color: #b7c3b3;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Gifts Store</h1>
+        <nav>
+            <button onclick="showCategory('birthday')">Birthday</button>
+            <button onclick="showCategory('anniversary')">Anniversary</button>
+            <button onclick="showCategory('housewarming')">Housewarming</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="products">
+            <!-- Products will be dynamically inserted here -->
+        </section>
+    </main>
+
+    <script>
+        const products = {
+            birthday: [
+                { name: "Customized Mug", price: "$12.99", img: "images/mug.jpg" },
+                { name: "Photo Frame", price: "$18.99", img: "images/photo-frame.jpg" },
+                { name: "Engraved Pen", price: "$9.99", img: "images/pen.jpg" },
+                { name: "Personalized Keychain", price: "$6.99", img: "images/keychain.jpg" },
+                { name: "Custom T-Shirt", price: "$19.99", img: "images/tshirt.jpg" },
+                { name: "Name Necklace", price: "$25.99", img: "images/necklace.jpg" },
+                { name: "Custom Pillow", price: "$14.99", img: "images/pillow.jpg" }
+            ],
+            anniversary: [
+                { name: "Engraved Watch", price: "$49.99", img: "images/watch.jpg" },
+                { name: "His & Her Wallet Set", price: "$30.99", img: "images/wallet-set.jpg" },
+                { name: "Chocolate Hamper", price: "$10.99", img: "images/chocolate-hamper.jpg" },
+                { name: "Customized Ring", price: "$39.99", img: "images/ring.jpg" },
+                { name: "Heart-Shaped Lamp", price: "$24.99", img: "images/lamp.jpg" },
+                { name: "Name Neon Sign", price: "$29.99", img: "images/neon-sign.jpg" },
+                { name: "Personalized Travel Bag", price: "$15.99", img: "images/travel-bag.jpg" }
+            ],
+            housewarming: [
+                { name: "Custom Wooden Nameplate", price: "$35.99", img: "images/nameplate.jpg" },
+                { name: "Engraved Cutting Board", price: "$22.99", img: "images/cutting-board.jpg" },
+                { name: "Monogrammed Towels", price: "$19.99", img: "images/towel.jpg" },
+                { name: "Personalized Clock", price: "$28.99", img: "images/clock.jpg" },
+                { name: "Custom Candle Set", price: "$14.99", img: "images/candles.jpg" },
+                { name: "Personalized Doormat", price: "$24.99", img: "images/doormat.jpg" },
+                { name: "Customized Wall Art", price: "$32.99", img: "images/wall-art.jpg" }
+            ]
+        };
+
+        // Function to display products by category
+        function showCategory(category) {
+            const productSection = document.getElementById("products");
+            productSection.innerHTML = "";  // Clear previous products
+
+            products[category].forEach(product => {
+                const productCard = `
+                    <div class="product-card">
+                        <img src="${product.img}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p>${product.price}</p>
+                    </div>
+                `;
+                productSection.innerHTML += productCard;
+            });
+        }
+
+        // Load default category on page load
+        document.addEventListener("DOMContentLoaded", () => showCategory('birthday'));
+    </script>
+    <script>
+        function updateCartCount() {
+        Promise.all([fetch("/api/cart"), fetch("/api/cartp")])
+            .then(async ([regularRes, personalizedRes]) => {
+                const regularItems = await regularRes.json();
+                const personalizedItems = await personalizedRes.json();
+                const totalItems = [...regularItems, ...personalizedItems]
+                    .reduce((sum, item) => sum + item.quantity, 0);
+                document.getElementById("cart-count").textContent = totalItems;
+            })
+            .catch(() => document.getElementById("cart-count").textContent = "0");
+    }
+      
+        document.addEventListener("DOMContentLoaded", updateCartCount);
+      </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const quantityInput = document.getElementById("quantity");
+        const plusButton = document.querySelector(".btn-plus");
+        const minusButton = document.querySelector(".btn-minus");
+    
+        function updateCart(quantityChange) {
+            const productId = 1; // Assuming pen product ID is 1
+            const customText = document.getElementById("custom-text").value;
+    
+            let newQuantity = parseInt(quantityInput.value, 10) + quantityChange;
+            if (newQuantity < 1) return;
+    
+            quantityInput.value = newQuantity;
+    
+            fetch("/api/cartp/update", {  // Use an "update" endpoint instead of "add"
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    productid: productId,
+                    pname: "Engraved Pen",
+                    price: 9.99,
+                    quantity: newQuantity, // Update the quantity instead of adding new items
+                    customText: customText
+                }),
+            })
+            .then(response => response.json())
+            .then(() => updateCartCount()) // Update cart count after modifying quantity
+            .catch(console.error);
+        }
+    
+        // Increase quantity and update cart
+        plusButton.addEventListener("click", function () {
+            updateCart(1);
+        });
+    
+        // Decrease quantity and update cart (only if quantity > 1)
+        minusButton.addEventListener("click", function () {
+            updateCart(-1);
+        });
+    });
+</script>
+
+</body>
+</html>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const minusBtn = document.querySelector('.btn-minus');
+  const plusBtn = document.querySelector('.btn-plus');
+  const quantityInput = document.getElementById('quantity');
+
+  minusBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    let currentValue = parseInt(quantityInput.value) || 1;
+    if (currentValue > 1) {
+      quantityInput.value = currentValue - 1;
+    }
+  });
+
+  plusBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    let currentValue = parseInt(quantityInput.value) || 1;
+    quantityInput.value = currentValue + 1;
+  });
+});
+</script>
