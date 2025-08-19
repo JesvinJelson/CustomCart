@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Vendor Dashboard - CustomCart</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  
+  <style>
+    /* Dashboard-specific styles */
+    .order-card { margin-bottom: 20px; transition: all 0.3s; }
+    .order-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    .status-pending { color: #ffc107; }
+    .status-processing { color: #17a2b8; }
+    .status-shipped { color: #007bff; }
+    .status-delivered { color: #28a745; }
+    .status-cancelled { color: #dc3545; }
+    .dashboard-sidebar { background-color: #f8f9fa; height: 100%; min-height: calc(100vh - 200px); padding: 20px 15px; }
+    .dashboard-sidebar .nav-link { color: #495057; padding: 10px 15px; border-radius: 4px; }
+    .dashboard-sidebar .nav-link:hover,
+    .dashboard-sidebar .nav-link.active { background-color: #e9ecef; }
+    .dashboard-sidebar .nav-link i { margin-right: 10px; }
+    .order-detail-row { padding: 8px 0; border-bottom: 1px solid #dee2e6; }
+    .order-detail-row:last-child { border-bottom: none; }
+    #orders-table th, #orders-table td { vertical-align: middle; }
+  </style>
+</head>
+<body>
+  <!-- Topbar Start -->
+  <div class="container-fluid">
+    <div class="row bg-secondary py-2 px-xl-5">
+      <div class="col-lg-6 d-none d-lg-block">
+        <div class="d-inline-flex align-items-center">
+          <a class="text-dark" href="">Vendor Dashboard</a>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center text-lg-right">
+        <div class="d-inline-flex align-items-center">
+          <a class="text-dark px-2" href=""><i class="fab fa-facebook-f"></i></a>
+          <a class="text-dark px-2" href=""><i class="fab fa-twitter"></i></a>
+          <a class="text-dark px-2" href=""><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-center py-3 px-xl-5">
+      <div class="col-lg-3 d-none d-lg-block">
+        <a href="" class="text-decoration-none">
+          <h1 class="m-0 display-5 font-weight-semi-bold">
+            <span class="text-primary font-weight-bold border px-3 mr-1">Custom</span>Cart
+          </h1>
+        </a>
+      </div>
+      <div class="col-lg-6 col-6 text-left">
+        <h2 class="m-0">Vendor Dashboard</h2>
+      </div>
+      <div class="col-lg-3 col-6 text-right">
+        <a href="/logout" class="btn border">
+          <i class="fas fa-sign-out-alt text-primary"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Topbar End -->
+
+  <!-- Dashboard Content Start -->
+  <div class="container-fluid pt-5">
+    <div class="row px-xl-5">
+      <!-- Sidebar -->
+      <div class="col-lg-3 mb-30">
+        <div class="dashboard-sidebar">
+          <h4 class="mb-4">Navigation</h4>
+          <div class="nav flex-column">
+            <a class="nav-link active" href="#" id="orders-tab">
+              <i class="fas fa-shopping-bag"></i> Orders
+            </a>
+            <a class="nav-link" href="#" id="products-tab">
+              <i class="fas fa-boxes"></i> Products
+            </a>
+            <a class="nav-link" href="#" id="customers-tab">
+              <i class="fas fa-users"></i> Customers
+            </a>
+            <a class="nav-link" href="#" id="settings-tab">
+              <i class="fas fa-cog"></i> Settings
+            </a>
+          </div>
+        </div>
+      </div>
+
+      
+      
+      <!-- Content Area -->
+      <div class="col-lg-9">
+        <!-- Orders Section -->
+        <div id="orders-section" class="dashboard-section">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3>Orders Management</h3>
+            <div class="d-flex">
+              <select class="form-control mr-2" id="status-filter">
+                <option value="all">All Statuses</option>
+                <option value="pending">Pending</option>
+                <option value="processing">Processing</option>
+                <option value="shipped">Shipped</option>
+                <option value="delivered">Delivered</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+              <input type="text" class="form-control" id="order-search" placeholder="Search orders...">
+            </div>
+          </div>
+          
+          <div class="table-responsive">
+            <table class="table table-hover" id="orders-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="orders-list">
+                <!-- Orders will be loaded here dynamically -->
+              </tbody>
+            </table>
+          </div>
+          
+          <nav aria-label="Orders pagination">
+            <ul class="pagination justify-content-center" id="pagination">
+              <!-- Pagination will be added here -->
+            </ul>
+          </nav>
+        </div>
+        
+        <!-- Order Details Modal -->
+        <div class="modal fade" id="orderDetailsModal" tabindex="-1" role="dialog" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="orderDetailsModalLabel">Order Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="order-details-content">
+                <!-- Order details will be loaded here -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <div id="status-action-buttons">
+                  <!-- Status action buttons (e.g., Accept order) will be added here -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Products Section (Hidden initially) -->
+        <div id="products-section" class="dashboard-section" style="display: none;">
+          <h3>Products Management</h3>
+          <p>Product management features will be implemented here.</p>
+        </div>
+        
+        <!-- Customers Section (Hidden initially) -->
+        <div id="customers-section" class="dashboard-section" style="display: none;">
+          <h3>Customer Management</h3>
+          <p>Customer management features will be implemented here.</p>
+        </div>
+        
+        <!-- Settings Section (Hidden initially) -->
+        <div id="settings-section" class="dashboard-section" style="display: none;">
+          <h3>Vendor Settings</h3>
+          <p>Settings and configuration features will be implemented here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Dashboard Content End -->
+
+  <!-- Footer Start -->
+  <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+    <div class="row px-xl-5 pt-5">
+      <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+        <a href="" class="text-decoration-none">
+          <h1 class="mb-4 display-5 font-weight-semi-bold">
+            <span class="text-primary font-weight-bold border border-white px-3 mr-1">Custom</span>Cart
+          </h1>
+        </a>
+        <p>Your one-stop shop for custom products. Vendor dashboard for managing orders and products.</p>
+      </div>
+    </div>
+    <div class="row border-top border-light mx-xl-5 py-4">
+      <div class="col-md-6 px-xl-0">
+        <p class="mb-md-0 text-center text-md-left text-dark">
+          &copy; <a class="text-dark font-weight-semi-bold" href="#">CustomCart</a>. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- Footer End -->
+
+  <!-- JavaScript Libraries -->
+
+  
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+  <!-- Template Javascript -->
+  <script src="dash.js"></script>
+</body>
+</html>
