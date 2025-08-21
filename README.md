@@ -17,6 +17,8 @@ Also used a sample RazarPay gateway using Razorpay API.
 
 <img width="1012" height="548" alt="image" src="https://github.com/user-attachments/assets/17976f4d-8479-44bf-95eb-d0f79479b50f" />
 
+The COMFYUI workflow used for clothes swapping is given bellow:
+
 <img width="1620" height="577" alt="image" src="https://github.com/user-attachments/assets/d8a6f334-1ac3-40fc-97d2-ae9db87b405e" />
 
-
+There is a custom workflow made for each apparel, which needs to be changed in future works, so that any apperal can be given as an input using a simple websocket.
