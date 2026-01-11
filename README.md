@@ -1,3 +1,6 @@
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/346a440f-beab-4d40-9608-801b7f76b8a2" />
+
+
 In today’s e-commerce landscape, customers often face uncertainty about how clothes will look on them, leading to dissatisfaction and high product return rates. CustomCart is an AI-powered personalized e-commerce platform designed to address this challenge by integrating a virtual try-on system. Using generative AI (via COMFYUI), the system allows users to upload their own photos and see dresses realistically applied to them, simulating a real fitting experience.
 
 The platform combines:
